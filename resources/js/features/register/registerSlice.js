@@ -25,11 +25,9 @@ export const registerSlice = createSlice({
         builder
             .addCase(register.fulfilled, (state, action) => {
                 state.email = action.payload
-                console.log(action)
             })
             .addCase(register.rejected, (state, action) => {
                 state.errors = action.error.message
-                console.log(action.error.message)
             })
     }
 })

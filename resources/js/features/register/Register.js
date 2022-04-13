@@ -67,6 +67,7 @@ export default function Register() {
                                     <button onClick={async () => {
                                         await dispatch(register({ 'name': name, 'email': email, 'password': password, 'password_confirmation': password_confirmation }))
                                             .then((res) => {
+                                                console.log(res)
                                                 if (!res.error) {
                                                     dispatch(ifAuth())
                                                     navigate('/')

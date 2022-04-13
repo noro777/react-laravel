@@ -9946,6 +9946,8 @@ function Register() {
                               'password': password,
                               'password_confirmation': password_confirmation
                             })).then(function (res) {
+                              console.log(res);
+
                               if (!res.error) {
                                 dispatch((0,_layout_layoutSlice__WEBPACK_IMPORTED_MODULE_2__.ifAuth)());
                                 navigate('/');
@@ -10003,13 +10005,14 @@ function _registerApi() {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return axios.post('api/register', data).then(function (res) {
-              return res.data;
-            })["catch"](function (e) {
-              if (e.response.data.errors.email) throw new Error(e.response.data.errors.email);
+            return axios.post('api/register', data)["catch"](function (e) {
+              if (e.response.data) throw e.response.data.errors[Object.keys(e.response.data.errors)[0]][0];
             });
 
           case 2:
+            return _context.abrupt("return", _context.sent);
+
+          case 3:
           case "end":
             return _context.stop();
         }
@@ -10086,10 +10089,8 @@ var registerSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice
   extraReducers: function extraReducers(builder) {
     builder.addCase(register.fulfilled, function (state, action) {
       state.email = action.payload;
-      console.log(action);
     }).addCase(register.rejected, function (state, action) {
       state.errors = action.error.message;
-      console.log(action.error.message);
     });
   }
 });

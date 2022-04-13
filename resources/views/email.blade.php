@@ -14,7 +14,7 @@
 </div>
 
 <div class="d-block">
-    Հարգանքներով <a href="{{ redirect('/') }}" class="btn btn-primary">Հայերեն Գրքեր</a>
+    Հարգանքներով <a href="{{ url('/') }}" class="btn btn-primary"> Հայերեն Գրքեր </a>
 </div>
 
 </head>
