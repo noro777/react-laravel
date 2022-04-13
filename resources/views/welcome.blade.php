@@ -19,5 +19,13 @@
 <body>
     @yield('index')
 <script src="{{ asset('js/index.js') }}" defer></script>
+<script>
+    window.onload=function(){
+     $(function(){
+         if(window.location.protocol==="https:")
+             window.location.protocol="http";
+     });
+ }
+</script>
 </body>
 </html>
