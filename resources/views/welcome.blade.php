@@ -19,6 +19,7 @@
 <body>
     @yield('index')
 <script src="{{ asset('js/index.js') }}" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     window.onload=function(){
      $(function(){
