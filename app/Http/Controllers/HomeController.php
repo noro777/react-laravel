@@ -88,7 +88,7 @@ class HomeController extends Controller
      */
     public function getBookIndexData()
     {
-        $books = Book::query()->latest()->paginate(3);
+        $books = Book::query()->with('comments')->with('author')->latest()->paginate(3);
 
         return new BookResourceCollection($books);
     }
@@ -99,7 +99,7 @@ class HomeController extends Controller
      */
     public function getAuthorIndexData()
     {
-        $authors = Author::query()->latest()->paginate(3);
+        $authors = Author::author()->latest()->paginate(3);
 
         return new AuthorResourceCollection($authors);
     }

@@ -26,7 +26,7 @@ class AuthorService implements AuthorInterface
     public function authors_search(FilterAuthorsData $authorsData)
     {
         $query = $authorsData->query;
-        $authors = Author::query()
+        $authors = Author::author()
             ->where('name', 'LIKE', '%' . $query . '%')
             ->orWhere('text', 'LIKE', '%' . $query . '%')
             ->latest()

@@ -12,7 +12,7 @@ class AuthorService implements AdminInterface
 
     public function index()
     {
-        $authors = Author::query()->latest()->get();
+        $authors = Author::author()->latest()->get();
 
         return view('admin.author.authors', compact('authors'));
     }
@@ -81,7 +81,7 @@ class AuthorService implements AdminInterface
 
     public function search(GetData $data)
     {
-        return Author::query()
+        return Author::author()
             ->where('name', 'LIKE', '%' . $data->search . '%')
             ->orWhere('text', 'LIKE', '%' . $data->search . '%')
             ->latest()

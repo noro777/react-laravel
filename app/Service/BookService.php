@@ -27,7 +27,8 @@ class BookService implements BookInterface
     public function books_search(FilterBooksData $booksData)
     {
         $query = $booksData->query;
-        $books = Book::query()->where('name', 'LIKE', '%' . $query . '%')
+        $books = Book::query()->with('comments')->with('author')
+            ->where('name', 'LIKE', '%' . $query . '%')
             ->orWhere('text', 'LIKE', '%' . $query . '%')
             ->latest()
             ->get();

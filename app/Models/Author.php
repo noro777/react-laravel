@@ -18,4 +18,13 @@ class Author extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public static function author(){
+        return Author::query()
+            ->with('comments')
+            ->with('books',function($q){
+                $q->with('comments')->with('author')->get();
+            }
+        );
+    }
 }
