@@ -13,14 +13,14 @@ class BookService implements AdminInterface
 
     public function index()
     {
-        $books = Book::query()->latest()->get();
+        $books = Book::query()->with('comments')->with('author')->latest()->get();
 
         return view('admin.book.books', compact('books'));
     }
 
     public function create()
     {
-        $authors = Author::query()->get();
+        $authors = Author::author()->get();
 
         return view('admin.book.book_create', compact('authors'));
     }
@@ -102,7 +102,7 @@ class BookService implements AdminInterface
 
     public function search(GetData $data)
     {
-        return Book::query()
+        return Book::query()->with('comments')->with('author')
             ->where('name', 'LIKE', '%' . $data->search . '%')
             ->orWhere('text', 'LIKE', '%' . $data->search . '%')
             ->latest()

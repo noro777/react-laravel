@@ -16,7 +16,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return new BookResourceCollection(Book::query()->latest()->get());
+        return new BookResourceCollection(Book::query()->with('comments')->with('author')->latest()->get());
     }
 
 
